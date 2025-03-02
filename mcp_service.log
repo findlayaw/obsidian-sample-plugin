@@ -1,0 +1,145 @@
+[2025-03-02T16:36:46.249Z] === MCP Service Starting ===
+[2025-03-02T16:36:46.251Z] Node.js version: v22.14.0
+[2025-03-02T16:36:46.251Z] Platform: win32
+[2025-03-02T16:36:46.253Z] Service PID: 15332
+[2025-03-02T16:36:46.254Z] Starting MCP bridge: C:\repos\obsidian-MCP\obsidian-devtools-plugin\auto_port_bridge.js
+[2025-03-02T16:36:46.273Z] Bridge PID: 8808
+[2025-03-02T16:36:46.287Z] MCP service started successfully
+[2025-03-02T16:36:46.446Z] Bridge: [MCP-Bridge] Starting MCP bridge with auto port selection
+[2025-03-02T16:36:46.448Z] Bridge: [MCP-Bridge] Attempting to create WebSocket server on port 27125...
+[2025-03-02T16:36:46.454Z] Bridge: [MCP-Bridge] WebSocket server successfully started on port 27125
+[2025-03-02T16:36:46.455Z] Bridge: [MCP-Bridge] Saved successful port: 27125
+[2025-03-02T16:36:46.456Z] Bridge: [MCP-Bridge] MCP bridge initialized
+[2025-03-02T16:36:56.292Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:36:56.467Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 0,
+  hasObsidianConnection: false,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:36:56.465Z'
+}
+[2025-03-02T16:37:06.293Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:16.300Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:26.309Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:26.482Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 0,
+  hasObsidianConnection: false,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:37:26.479Z'
+}
+[2025-03-02T16:37:36.310Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:46.326Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:56.327Z] Health check: Service running (PID: 15332), Bridge running: Yes
+[2025-03-02T16:37:56.485Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 0,
+  hasObsidianConnection: false,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:37:56.485Z'
+}
+[2025-03-02T16:38:10.273Z] === MCP Service Starting ===
+[2025-03-02T16:38:10.275Z] Node.js version: v22.14.0
+[2025-03-02T16:38:10.275Z] Platform: win32
+[2025-03-02T16:38:10.277Z] Service PID: 9508
+[2025-03-02T16:38:10.278Z] Starting MCP bridge: C:\repos\obsidian-MCP\obsidian-devtools-plugin\auto_port_bridge.js
+[2025-03-02T16:38:10.294Z] Bridge PID: 15364
+[2025-03-02T16:38:10.296Z] MCP service started successfully
+[2025-03-02T16:38:10.427Z] Bridge: [MCP-Bridge] Starting MCP bridge with auto port selection
+[2025-03-02T16:38:10.429Z] Bridge: [MCP-Bridge] Loaded last successful port: 27125
+[MCP-Bridge] Attempting to create WebSocket server on port 27125...
+[2025-03-02T16:38:10.435Z] Bridge: [MCP-Bridge] WebSocket server successfully started on port 27125
+[2025-03-02T16:38:10.436Z] Bridge: [MCP-Bridge] Saved successful port: 27125
+[2025-03-02T16:38:10.437Z] Bridge: [MCP-Bridge] MCP bridge initialized
+[2025-03-02T16:38:20.304Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:38:20.446Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 0,
+  hasObsidianConnection: false,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:38:20.442Z'
+}
+[2025-03-02T16:38:30.309Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:38:39.123Z] Bridge: [MCP-Bridge] Obsidian plugin connected
+[2025-03-02T16:38:40.315Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:38:50.327Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:38:50.453Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:38:50.450Z'
+}
+[2025-03-02T16:39:00.328Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:01.174Z] Bridge: [MCP-Bridge] Obsidian plugin disconnected
+[2025-03-02T16:39:02.019Z] Bridge: [MCP-Bridge] Obsidian plugin connected
+[2025-03-02T16:39:10.340Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:20.353Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:20.459Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:39:20.459Z'
+}
+[2025-03-02T16:39:30.363Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:40.369Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:50.382Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:39:50.461Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:39:50.460Z'
+}
+[2025-03-02T16:40:00.397Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:10.407Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:20.417Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:20.465Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:40:20.463Z'
+}
+[2025-03-02T16:40:30.428Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:40.431Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:50.433Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:40:50.480Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:40:50.478Z'
+}
+[2025-03-02T16:41:00.447Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:10.454Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:20.468Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:20.485Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:41:20.483Z'
+}
+[2025-03-02T16:41:30.472Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:40.481Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:50.491Z] Health check: Service running (PID: 9508), Bridge running: Yes
+[2025-03-02T16:41:50.492Z] Bridge: [MCP-Bridge] Health check status: {
+  serverPort: 27125,
+  hasServer: true,
+  serverClientsCount: 1,
+  hasObsidianConnection: true,
+  pendingRequestsCount: 0,
+  timestamp: '2025-03-02T16:41:50.490Z'
+}

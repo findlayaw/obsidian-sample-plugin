@@ -1,94 +1,185 @@
-# Obsidian Sample Plugin
+# Obsidian DevTools MCP Integration
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A Model Context Protocol (MCP) server implementation for Obsidian that provides programmatic access to Obsidian's developer tools. This allows AI assistants to interact with Obsidian's console and Elements panel.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- Full MCP compatibility for AI assistants like Claude
+- Automatic port selection to avoid conflicts
+- Robust error handling and recovery
+- Detailed logging
+- Simple one-click start/stop
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+### Option 1: Easy Installation (Recommended)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. Download all files to your Obsidian plugins directory
+2. Run `start_mcp.bat` to start the MCP server
 
-## Releasing new releases
+### Option 2: Manual Installation
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. Create the plugin directory:
+   ```powershell
+   # Windows
+   mkdir "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp"
+   ```
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+2. Copy these files to the plugin directory:
+   ```powershell
+   # Required plugin files
+   copy "main.js" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   copy "manifest.json" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   copy "styles.css" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   
+   # New MCP bridge files (recommended)
+   copy "auto_port_bridge.js" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   copy "auto_service.js" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   copy "start_mcp.bat" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   copy "stop_mcp.bat" "%APPDATA%\Obsidian\plugins\obsidian-devtools-mcp\"
+   ```
 
-## Adding your plugin to the community plugin list
+3. Start the improved MCP service:
+   ```powershell
+   # Run the batch file for automatic startup
+   start_mcp.bat
+   
+   # Or start manually
+   node auto_service.js
+   ```
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## Configuration
 
-## How to use
+1. Ensure your `cline_mcp_settings.json` includes the devtools configuration:
+   ```json
+   {
+     "mcpServers": {
+       "obsidian-devtools": {
+         "command": "node",
+         "args": [
+           "C:\\repos\\obsidian-MCP\\obsidian-devtools-plugin\\auto_service.js"
+         ],
+         "env": {
+           "PATH": "%PATH%;C:\\Program Files\\nodejs"
+         },
+         "disabled": false,
+         "autoApprove": [
+           "query_elements",
+           "get_computed_styles",
+           "get_console_logs"
+         ],
+         "alwaysAllow": [
+           "query_elements",
+           "get_computed_styles",
+           "get_console_logs"
+         ]
+       }
+     }
+   }
+   ```
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+   > **Note**: Make sure to update the path to point to your actual installation directory
 
-## Manually installing the plugin
+## Features
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+The plugin provides three main tools:
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+1. `query_elements`: Query DOM elements using CSS selectors
+   ```typescript
+   use_mcp_tool({
+     server_name: "obsidian-devtools",
+     tool_name: "query_elements",
+     arguments: {
+       selector: ".workspace"
+     }
+   });
+   ```
 
-## Funding URL
+2. `get_computed_styles`: Get computed styles for elements
+   ```typescript
+   use_mcp_tool({
+     server_name: "obsidian-devtools",
+     tool_name: "get_computed_styles",
+     arguments: {
+       selector: ".workspace-split"
+     }
+   });
+   ```
 
-You can include funding URLs where people who use your plugin can financially support it.
+3. `get_console_logs`: Access console logs
+   ```typescript
+   use_mcp_tool({
+     server_name: "obsidian-devtools",
+     tool_name: "get_console_logs",
+     arguments: {
+       limit: 50
+     }
+   });
+   ```
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+## Status Indicators
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
+The plugin provides visual feedback through:
+- Status bar item showing connection status
+- Console logs for detailed debugging
+- A bug icon in the ribbon for toggling DevTools
 
-If you have multiple URLs, you can also do:
+## Troubleshooting
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+### Common Issues:
 
-## API Documentation
+1. **Connection Issues**:
+   - Check that Obsidian is running and the plugin is enabled
+   - The server will now automatically find an available port between 27125-27135
+   - Check your MCP client (Claude, VSCode, etc.) is running with the latest settings
 
-See https://github.com/obsidianmd/obsidian-api
+2. **If tool calls fail**:
+   - Run `stop_mcp.bat` and then `start_mcp.bat` to restart the MCP server
+   - Check the `mcp_service.log` file for detailed error messages
+   - Verify the auto_service.js process is running (check Task Manager)
+
+3. **Common Error Messages**:
+   - "Not connected": The WebSocket connection is not established
+   - "Port in use": The auto port selection should prevent this, but you can manually verify
+   - "Request timed out": The plugin didn't respond within 15 seconds
+
+4. **Debug Steps**:
+   - Check the log file at `mcp_service.log` for detailed diagnostic information
+   - Enable Developer Tools in Obsidian to view console messages
+   - Run `netstat -ano | findstr "2712"` to check for processes using relevant ports
+
+5. **Manual Cleanup**:
+   - Run `stop_mcp.bat` to properly terminate all processes
+   - Delete temporary files: `service.pid`, `bridge.pid`, and `active_port.txt`
+   - Restart Obsidian and your MCP client
+
+## Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Build the plugin: `npm run build`
+4. For development: `npm run dev`
+
+## Architecture
+
+The plugin uses a robust three-part architecture:
+
+1. **Obsidian Plugin** (main.ts) - Handles DOM interaction and UI elements in Obsidian
+
+2. **Bridge Server** (auto_port_bridge.js) - Manages WebSocket communication with:
+   - Automatic port selection to avoid conflicts
+   - Robust error handling and recovery
+   - Detailed logging capabilities
+   - Graceful shutdown and cleanup
+
+3. **Service Wrapper** (auto_service.js) - Provides system-level features:
+   - Process management and monitoring
+   - Health checks and automatic restarts
+   - Input/output handling
+   - Log file management
+
+This enhanced architecture ensures reliable operation even in complex environments with multiple MCP clients or services running simultaneously.
+
+## License
+
+MIT License. See LICENSE file for details.
